@@ -212,6 +212,68 @@ _Методы:_
 
 ---
 
+## Интерфейсы данных и их типизация:
+
+### Интерфейс модели данных продукта
+
+interface IModelProducts {
+products: IProductList[];
+setProducts(products: IProductList[]): void;
+getProducts(): IProductList[];
+getProduct(id: string): IProductList;
+}
+
+### Интерфейс модели данных корзины
+
+interface IModelBasket {
+products: TProductBasket[];
+appendToBasket(product: IProductList): void;
+removeFromBasket(product: IProductList): void;
+getButtonStatus(product: TProductBasket): string;
+getBasketPrice(): number;
+getBasketQuantity(): number;
+clearBasket(): void;
+}
+
+## Интерфейс модели данных заказа
+
+interface IModelOrder {
+formErrors: TFormErrors;
+order: IOrder;
+setOrderPayment(value: string): void;
+setOrderEmail(value: string): void;
+setOrderField(field: keyof TOrderInput, value: string): void;
+setOrderField(field: keyof IOrder, value: IOrder[keyof IOrder]): void;
+validateOrder(): boolean;
+clearOrder(): void;
+}
+
+### Интерфейс продукта
+
+interface IProductList {
+
+- title: string;
+- category: string;
+- id: string;
+- discription: string;
+- image: string;
+- price: number | null;
+  }
+
+### Интерфейс заказа
+
+interface IOrder {
+
+- items: string[];
+- total: number;
+- phone: string;
+- email: string;
+- address: string;
+- payment: string;
+  }
+
+---
+
 ## Стек и структура проекта
 
 Стек: HTML, SCSS, TS, Webpack
