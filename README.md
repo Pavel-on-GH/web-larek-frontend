@@ -222,59 +222,59 @@ _Методы:_
 ### Интерфейс модели данных продукта
 
 - interface IModelProducts {
-- products: IProductList[];
-- setProducts(products: IProductList[]): void;
-- getProducts(): IProductList[];
-- getProduct(id: string): IProductList;
+- products: IProductList[] - Массив товаров;
+- setProducts(products: IProductList[]): void - Метод для заполнения массива карточек товаров;
+- getProducts(): IProductList[] - Метод, возвращающий массив карточек товаров;
+- getProduct(id: string): IProductList - Метод, который возвращает одну карточку товаров по id;
   }
 
 ### Интерфейс модели данных корзины
 
 - interface IModelBasket {
-- products: TProductBasket[];
-- appendToBasket(product: IProductList): void;
-- removeFromBasket(product: IProductList): void;
-- getButtonStatus(product: TProductBasket): string;
-- getBasketPrice(): number;
-- getBasketQuantity(): number;
-- clearBasket(): void;
+- products: TProductBasket[] - Массив объектов продуктов, которые добавлены в корзину;
+- appendToBasket(product: IProductList): void - Метод, добавляющий товар в корзину;
+- removeFromBasket(product: IProductList): void - Метод, удаляющий товар из корзины;
+- getButtonStatus(product: TProductBasket): string - Метод возвращает статус кнопки для продукта. Кнопка имеет два состояния: "купить", если товара ещё нет в корзине и "удалить" в обратном случае;
+- getBasketPrice(): number - Метод вычисляющий и возвращающий общую стоимость продуктов в корзине;
+- getBasketQuantity(): number - Метод, возвращающий количество продуктов в корзине;
+- clearBasket(): void - Метод для очистки всей корзины;
   }
 
 ### Интерфейс модели данных заказа
 
 - interface IModelOrder {
-- formErrors: TFormErrors;
-- order: IOrder;
-- setPayment(value: string): void;
-- setOrderEmail(value: string): void;
-- setOrderField(field: keyof TOrderInput, value: string): void;
-- etOrderField(field: keyof IOrder, value: IOrder[keyof IOrder]): void;
-- validateOrder(): boolean;
-- clearOrder(): void;
+- formErrors: TFormErrors - Объект содержащий ошибки валидации форм;
+- order: IOrder - Объект, представляющий данные текущего заказа;
+- setPayment(value: string): void - Метод, устанавливающий способ оплаты в заказе;
+- setOrderEmail(value: string): void - Метод, устанавливающий электронную почту в заказе;
+- setOrderField(field: keyof TOrderInput, value: string): void - Метод, обновляющий любое поле заказа на основе его имени и значения, после чего инициирующий валидацию;
+- setOrderField(field: keyof IOrder, value: IOrder[keyof IOrder]): void - Метод, обновляющий все поля заказа;
+- validateOrder(): boolean - Метод, который выполняет валидацию заказа и сли одно из полей не заполнено, добавляет в соответствующее поле сообщение об ошибке;
+- clearOrder(): void - Метод, очищающий данные заказа;
   }
 
 ### Интерфейс продукта
 
 interface IProductList {
 
-- title: string;
-- category: string;
-- id: string;
-- discription: string;
-- image: string;
-- price: number | null;
+- title: string - Название товара;
+- category: string - Категория товара;
+- id: string - Id товара;
+- discription: string - Описание товара;
+- image: string - Изображение товара;
+- price: number | null - Цена товара;
   }
 
 ### Интерфейс заказа
 
 interface IOrder {
 
-- items: string[];
-- total: number;
-- phone: string;
-- email: string;
-- address: string;
-- payment: string;
+- items: string[] - Массив заказов;
+- total: number - Количество позиций;
+- phone: string - Номер телефона клиента;
+- email: string - Электронная почта клиента;
+- address: string - Адрес места доставки;
+- payment: string - Цена заказа;
   }
 
 ---
