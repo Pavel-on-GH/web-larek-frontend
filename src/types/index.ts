@@ -32,7 +32,7 @@ export interface IModelProducts {
 	products: IProductList[];
 	setProducts(products: IProductList[]): void;
 	getProducts(): IProductList[];
-	getProduct(id: string): IProductList;
+	getProduct(id: string): IProductList | null;
 }
 
 export interface IModelBasket {

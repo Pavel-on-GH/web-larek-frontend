@@ -85,7 +85,7 @@ _Методы:_
 
 _Геттеры:_
 
-- getProduct(id: string): IProductList - Возвращает одну карточку продуктов по его id;
+- getProduct(id: string): IProductList | null - Возвращает одну карточку продуктов по его id;
 - getProducts(): IProductList[] - Возвращает массив карточек продуктов;
 - get products(): IProductList[] - Геттер products возвращает текущий список продуктов.
 
