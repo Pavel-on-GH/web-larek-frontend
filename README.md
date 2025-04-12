@@ -399,6 +399,8 @@ interface IOrder {
 
 - src/ — исходные файлы проекта
 - src/components/ — папка с JS компонентами
+- src/components/Model — папка с основным кодом для слоя Model
+- src/components/Model — папка с основным кодом для слоя View
 - src/components/base/ — папка с базовым кодом
 
 Важные файлы:
