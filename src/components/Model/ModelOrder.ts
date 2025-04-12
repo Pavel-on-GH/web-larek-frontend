@@ -1,6 +1,6 @@
-import { IOrder, IModelOrder, PaymentType } from '../types';
-import { TFormErrors, TOrderInput } from '../types/index';
-import { IEvents } from './base/events';
+import { IOrder, IModelOrder, PaymentType } from '../../types';
+import { TFormErrors, TOrderInput } from '../../types/index';
+import { IEvents } from './../base/events';
 
 export class ModelOrder implements IModelOrder {
 	protected _formErrors: TFormErrors;
@@ -25,7 +25,7 @@ export class ModelOrder implements IModelOrder {
 		return this._order;
 	}
 
-	seTPayment(value: PaymentType) {
+	setPayment(value: PaymentType) {
 		this._order.payment = value;
 	}
 

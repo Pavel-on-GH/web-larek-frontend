@@ -48,7 +48,7 @@ export interface IModelBasket {
 export interface IModelOrder {
 	formErrors: TFormErrors;
 	order: IOrder;
-	seTPayment(value: string): void;
+	setPayment(value: string): void;
 	setOrderEmail(value: string): void;
 	setOrderField(field: keyof TOrderInput, value: string): void;
 	setOrderField(field: keyof IOrder, value: IOrder[keyof IOrder]): void;

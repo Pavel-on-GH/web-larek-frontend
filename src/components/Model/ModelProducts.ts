@@ -1,4 +1,4 @@
-import { IProductList, IModelProducts } from '../../types';
+import { IProductList, IModelProducts } from '../../types/index';
 import { IEvents } from '../base/events';
 export class ModelProducts implements IModelProducts {
 	_products: IProductList[];

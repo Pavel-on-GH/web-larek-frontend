@@ -1,10 +1,10 @@
-import { IEvents } from './base/events';
+import { IEvents } from './../base/events';
 import {
 	IOrder,
 	IModelBasket,
 	TProductBasket,
 	IModelOrder,
-} from '../types/index';
+} from '../../types/index';
 
 export class ModelBasket implements IModelBasket {
 	protected _products: TProductBasket[] = [];
