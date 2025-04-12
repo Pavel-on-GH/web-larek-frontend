@@ -28,4 +28,9 @@ export class ModelProducts implements IModelProducts {
 	getProduct(id: string) {
 		return this.products.find((product) => product.id === id) || null;
 	}
+
+	savePreview(product: IProductList): void {
+		this._preview = product.id;
+		this.events.emit('preview:change', product);
+	}
 }

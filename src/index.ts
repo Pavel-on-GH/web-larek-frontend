@@ -1,9 +1,11 @@
 import './scss/styles.scss';
 
 import { IEvents, EventEmitter } from './components/base/events';
-import { IProductList, IOrder, PaymentType } from './types/index';
+import { IApi, IProductList, IOrder, PaymentType } from './types/index';
 import { ensureElement, cloneTemplate } from './utils/utils';
+import { API_URL, CDN_URL } from './utils/constants';
 
+import { Api } from './components/base/api';
 import { ModelProducts } from './components/Model/ModelProducts';
 import { ModelBasket } from './components/Model/ModelBasket';
 import { ModelOrder } from './components/Model/ModelOrder';
@@ -13,7 +15,11 @@ import { Basket } from './components/View/Basket';
 import { Contacts } from './components/View/Contacts';
 import { Payment } from './components/View/Payment';
 import { Page } from './components/View/Page';
+import { AppApi } from './components/Presenter/AppApi';
+import { Success } from './components/View/Succses';
 
+const baseApi: IApi = new Api(API_URL);
+const api = new AppApi(CDN_URL, baseApi);
 const events: IEvents = new EventEmitter();
 
 const productsData = new ModelProducts(events);
@@ -28,7 +34,7 @@ const orderTemplate = ensureElement<HTMLTemplateElement>('#order');
 const contactsTemplate = ensureElement<HTMLTemplateElement>('#contacts');
 const modalContainerTemplate =
 	ensureElement<HTMLTemplateElement>('#modal-container');
-const body = document.body;
+const orderSuccessTemplate = ensureElement<HTMLTemplateElement>('#success');
 
 const page = new Page(document.body, events);
 const modal = new Popup(modalContainerTemplate, events);
@@ -52,6 +58,10 @@ events.on('card:change', () => {
 			price: product.price,
 		});
 	});
+});
+
+events.on('card:selected', (product: IProductList) => {
+	productsData.savePreview(product);
 });
 
 events.on('preview:change', (product: IProductList) => {
@@ -160,3 +170,44 @@ events.on('order:submit', () => {
 		}),
 	});
 });
+
+events.on('contacts:submit', () => {
+	basketData.sendBasketToOrder(orderData);
+	api
+		.orderProducts(orderData.order)
+		.then((result) => {
+			const success = new Success(cloneTemplate(orderSuccessTemplate), {
+				onClick: () => {
+					modal.close();
+				},
+			});
+			basketData.clearBasket();
+			orderData.clearOrder();
+			modal.render({
+				content: success.render({
+					total: result.total,
+				}),
+			});
+		})
+
+		.catch((error) => {
+			console.error(`Произошла ошибка при отправке заказа: ${error}`);
+			alert(
+				'Произошла ошибка при отправке заказа. Пожалуйста, попробуйте позже.'
+			);
+		});
+});
+
+api
+	.getProducts()
+	.then((response) => {
+		Array.isArray(response)
+			? productsData.setProducts(response)
+			: console.error('Получен некорректный список продуктов', response);
+	})
+	.catch((error) => {
+		console.error(`Произошла ошибка при получении списка продуктов: ${error}`);
+		alert(
+			'Произошла ошибка при получении списка продуктов. Пожалуйста, попробуйте позже.'
+		);
+	});
