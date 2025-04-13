@@ -14,10 +14,10 @@ export class Popup extends Component<IPopupData> {
 		super(container);
 
 		this._closeButton = ensureElement<HTMLButtonElement>(
-			'.Popup__close',
+			'.modal__close',
 			container
 		);
-		this._content = ensureElement<HTMLElement>('.Popup__content', container);
+		this._content = ensureElement<HTMLElement>('.modal__content', container);
 		this._closeButton.addEventListener('click', this.close.bind(this));
 		this.container.addEventListener('click', this.close.bind(this));
 		this._content.addEventListener('click', (event) => event.stopPropagation());
@@ -33,16 +33,16 @@ export class Popup extends Component<IPopupData> {
 	}
 
 	open() {
-		this.container.classList.add('Popup_active');
+		this.container.classList.add('modal_active');
 		document.addEventListener('keyup', this.handleEscUp);
-		this.events.emit('Popup:open');
+		this.events.emit('modal:open');
 	}
 
 	close() {
-		this.container.classList.remove('Popup_active');
+		this.container.classList.remove('modal_active');
 		document.removeEventListener('keyup', this.handleEscUp);
 		this.content = null;
-		this.events.emit('Popup:close');
+		this.events.emit('modal:close');
 	}
 
 	handleEscUp(event: KeyboardEvent) {

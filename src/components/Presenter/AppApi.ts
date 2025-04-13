@@ -4,11 +4,11 @@ import { ApiListResponse } from '../base/api';
 
 export class AppApi {
 	private _baseApi: IApi;
-	private cdn: string;
+	private url: string;
 
 	constructor(cdn: string, baseApi: IApi) {
 		this._baseApi = baseApi;
-		this.cdn = cdn;
+		this.url = cdn;
 	}
 
 	getProducts(): Promise<IProductList[]> {
@@ -17,7 +17,7 @@ export class AppApi {
 			.then((response) =>
 				response.items.map((product) => ({
 					...product,
-					image: this.cdn + product.image,
+					image: this.url + product.image,
 				}))
 			);
 	}
@@ -27,7 +27,7 @@ export class AppApi {
 			.get<IProductList>(`/product/${id}`)
 			.then((product) => ({
 				...product,
-				image: this.cdn + product.image,
+				image: this.url + product.image,
 			}));
 	}
 
