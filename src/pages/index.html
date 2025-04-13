@@ -273,6 +273,8 @@
 						<input
 							name="address"
 							class="form__input"
+							pattern="[a-zA-Zа-яА-Я0-9.,-]+"
+							title="Буквы русского и английского алфавита, цифры, а так же символы: точка, запятая и дефис"
 							type="text"
 							placeholder="Введите адрес"
 						/>
@@ -295,7 +297,7 @@
 						<input
 							name="email"
 							class="form__input"
-							type="text"
+							type="email"
 							placeholder="Введите Email"
 						/>
 					</label>
@@ -304,7 +306,7 @@
 						<input
 							name="phone"
 							class="form__input"
-							type="text"
+							type="number"
 							placeholder="+7 ("
 						/>
 					</label>
