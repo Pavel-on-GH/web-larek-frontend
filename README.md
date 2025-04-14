@@ -53,7 +53,7 @@ _Методы:_
 
 - toggleClass(element: HTMLElement, className: string, force?: boolean) - Переключить класс;
 - setText(element: HTMLElement, value: unknown) - Установить текстовое содержимое;
-- setDisabled(element: HTMLElement, state: boolean) - Сменить статус блокировки;
+- setDisabled(element: HTMLElement, state: boolean, text?: string) - Сменить статус блокировки;
 - setVisible(element: HTMLElement) - Показать компонент;
 - setHidden(element: HTMLElement) - Скрыть компонент;
 - setImage(element: HTMLImageElement, src: string, alt?: string) - Задать изображение;
@@ -275,7 +275,6 @@ _Сеттеры:_
 
 - set counter(value: number) - Устанавливает значение счетчика товаров в корзине;
 - set catalog(items: HTMLElement[]) - Устанавливает массив элементов HTML, представляющих товары в каталоге;
-- set locked(value: boolean) - Устанавливает или снимает блокировку страницы.
 
 ### Класс Success
 
@@ -423,9 +422,10 @@ interface IApi{
 ### Интерфейс валидации формы
 
 interface IFormValidator {
-valid: boolean - Флаг валидности формы;
-errors: string[] - Массив строк с ошибками при валидации.
-}
+
+- valid: boolean - Флаг валидности формы;
+- errors: string[] - Массив строк с ошибками при валидации.
+  }
 
 ---
 
@@ -458,7 +458,7 @@ errors: string[] - Массив строк с ошибками при валид
 - src/components/ — папка с JS компонентами
 - src/components/Model — папка с основным кодом для слоя Model
 - src/components/View — папка с основным кодом для слоя View
-- src/components/Presenter — папка с кодом для слоя Presenter
+- src/components/Presenter — папка с кодом для сервиса запросов
 - src/components/base/ — папка с базовым кодом
 
 Важные файлы:

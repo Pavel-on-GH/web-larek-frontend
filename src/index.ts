@@ -15,7 +15,7 @@ import { Basket } from './components/View/Basket';
 import { Contacts } from './components/View/Contacts';
 import { Payment } from './components/View/Payment';
 import { Page } from './components/View/Page';
-import { AppApi } from './components/Presenter/AppApi';
+import { AppApi } from './components/ApiService/AppApi';
 import { Success } from './components/View/Succses';
 
 const baseApi: IApi = new Api(API_URL);
@@ -114,11 +114,11 @@ events.on('basket:change', () => {
 });
 
 events.on('modal:open', () => {
-	page.locked = true;
+	page.toggleClass(modalContainerTemplate, 'page__wrapper_locked', true);
 });
 
 events.on('modal:close', () => {
-	page.locked = false;
+	page.toggleClass(modalContainerTemplate, 'page__wrapper_locked', false);
 });
 
 events.on('order:open', () => {

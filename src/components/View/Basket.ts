@@ -31,15 +31,11 @@ export class Basket extends Component<IBasket> {
 
 	updateButtonState() {
 		const totalPrice = parseFloat(this._price.textContent || '0');
-		if (totalPrice > 0) {
-			this.setDisabled(this._button, false);
-		} else {
-			this.setDisabled(this._button, true);
-		}
+		this.setDisabled(this._button, totalPrice <= 0);
 	}
 
 	set price(value: number) {
-		this._price.textContent = `${value} синапсов`;
+		this.setText(this._price, value, ' синапсов');
 		this.updateButtonState();
 	}
 

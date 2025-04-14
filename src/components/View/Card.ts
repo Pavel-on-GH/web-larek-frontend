@@ -48,7 +48,7 @@ export abstract class BaseCard extends Component<ICard> {
 	}
 
 	set buttonText(value: string) {
-		this._button.textContent = value;
+		this.setText(this._button, value);
 	}
 }
 
